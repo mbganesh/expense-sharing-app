@@ -1,24 +1,52 @@
-import logo from './logo.svg';
-import './App.css';
+import { Routes } from "react-router-dom";
+import "./App.css";
+import {
+  AppBar,
+  Box,
+  Button,
+  Card,
+  CssBaseline,
+  ThemeProvider,
+  Toolbar,
+  Typography,
+  createTheme,
+} from "@mui/material";
 
 function App() {
+  const createDarkTheme = createTheme({
+    palette: {
+      mode: "dark",
+    },
+  });
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+    <ThemeProvider theme={createDarkTheme}>
+      <CssBaseline />
+      <AppBar position="sticky">
+        <Toolbar
+         style={{
+          display: "flex",
+          justifyContent:'space-between'
+        }}
+        // sx={{ flexGrow: 1, display: { xs: 'none', sm: 'block' } }}
         >
-          Learn React
-        </a>
-      </header>
-    </div>
+          <div>
+            <Typography variant="h6" component='div'>Expense Sharing App</Typography>
+          </div>
+
+          <Box >
+            <Button variant="outlined" sx={{textTransform:'none'}} >
+                Add User
+            </Button>
+
+            <Button>
+                Add Payment
+            </Button>
+          </Box>
+        </Toolbar>
+      </AppBar>
+      {/* <Routes/>       */}
+    </ThemeProvider>
   );
 }
 
