@@ -1,7 +1,7 @@
-import { create, useStore } from "zustand";
+import { create } from "zustand";
 
-const store = (set) => ({
-    type:['EQUAL' , 'EXACT'  , 'PERCENT']
-})
+const useSplitType = create((set) => ({
+  splitType: ["EQUAL", "EXACT", "PERCENT"],
+}));
 
-export default useStore
+export default useSplitType;

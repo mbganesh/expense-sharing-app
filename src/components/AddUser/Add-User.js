@@ -54,6 +54,9 @@ const AddUser = () => {
     let res = setLocal(USER_KEY, restData);
     console.log(res, "storedRes");
     toast.success("User Added Successfully");
+    setTimeout(() => {
+      navigate(-1)
+    }, 800);
     reset(defaultValues);
   };
 
@@ -147,8 +150,6 @@ const AddUser = () => {
                   sx={{ margin: "5px" }}
                   error={!!error}
                   size="small"
-                  maxLength={10}
-                  max={10}
                   onChange={onChange}
                 />
               )}

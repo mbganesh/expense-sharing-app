@@ -17,6 +17,10 @@ import PersonAddIcon from "@mui/icons-material/PersonAdd";
 import AddBusinessIcon from "@mui/icons-material/AddBusiness";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import Dashboard from "components/Dashboard";
+import { getLocal } from "hooks/localStorage";
+import { USER_KEY } from "config";
+import toast from "react-hot-toast";
+import AddExpense from "components/AddExpense/Add-Expense";
 
 function App() {
   const navigate = useNavigate();
@@ -27,6 +31,14 @@ function App() {
       mode: "dark",
     },
   });
+
+  const handleExpenseBtn = () => {
+    if(getLocal(USER_KEY).length === 0){
+      toast.error('Please add user details');
+      return
+    }
+    navigate("/add-expense")
+  }
 
   return (
     <ThemeProvider theme={createDarkTheme}>
@@ -45,7 +57,7 @@ function App() {
           </div>
 
           <Box>
-            {["/add-payment", "/add-user"].includes(location.pathname) ? (
+            {["/add-expense", "/add-user"].includes(location.pathname) ? (
               <Button
                 sx={{ marginLeft: 2, marginRight: 2, textTransform: "none" }}
                 variant="contained"
@@ -70,10 +82,10 @@ function App() {
                   sx={{ marginLeft: 2, marginRight: 2, textTransform: "none" }}
                   variant="outlined"
                   color="success"
-                  onClick={() => navigate("/add-payment")}
+                  onClick={() => handleExpenseBtn()}
                   startIcon={<AddBusinessIcon />}
                 >
-                  Add Payment
+                  Add Expense
                 </Button>
               </>
             )}
@@ -84,9 +96,23 @@ function App() {
       <Routes>
       <Route path="/" element={<Dashboard />} />
         <Route path="/add-user" element={<AddUser />} />
+        <Route path="/add-expense" element={<AddExpense />} />
       </Routes>
     </ThemeProvider>
   );
 }
+
+/**
+ * Ref Link:
+ * https://lldcoding.com/design-lld-splitwise-application-machine-coding
+ * 
+ * https://workat.tech/machine-coding/editorial/how-to-design-splitwise-machine-coding-ayvnfo1tfst6
+ * 
+ * 
+ * https://workat.tech/machine-coding/practice/splitwise-problem-0kp2yneec2q2 (only qn)
+
+
+
+*/
 
 export default App;
