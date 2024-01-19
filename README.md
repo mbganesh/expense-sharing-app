@@ -60,7 +60,7 @@ Start the server
 
 ## Features
 
-- Add & Edit User
+- Add & Delete User
 - Equal Split calculation
 - Add Expenses
 - Dashboard
